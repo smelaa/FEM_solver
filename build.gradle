@@ -1,5 +1,7 @@
 plugins {
+    id 'application'
     id 'java'
+    id 'org.openjfx.javafxplugin' version '0.0.13'
 }
 
 group 'org.example'
@@ -7,13 +9,29 @@ version '1.0-SNAPSHOT'
 
 repositories {
     mavenCentral()
+    javafx {
+        version = "17"
+        modules = [ 'javafx.controls', 'javafx.fxml' ]
+    }
+}
+
+application {
+    getMainClass().set('rrir.mes.Main')
 }
 
 dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+    implementation 'org.apache.commons:commons-math3:3.6.1'
 }
 
 test {
     useJUnitPlatform()
+}
+
+
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(17))
+    }
 }
