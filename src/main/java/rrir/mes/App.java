@@ -10,7 +10,7 @@ public class App extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(this.getClass().getResource("/app.fxml"));
-
+        primaryStage.setTitle("FEM solver - Gravitational Potential");
         primaryStage.setMinWidth(1000);
         primaryStage.setMinHeight(800);
 

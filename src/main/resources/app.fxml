@@ -9,10 +9,10 @@
     <center>
         <LineChart fx:id="plot" animated="false" horizontalZeroLineVisible="false" legendVisible="false" verticalZeroLineVisible="false" BorderPane.alignment="CENTER">
             <xAxis>
-                <NumberAxis autoRanging="false" label="x" lowerBound="-0.1" side="BOTTOM" tickUnit="0.2" upperBound="3.1" />
+                <NumberAxis autoRanging="false" label="x" lowerBound="-0.1" side="BOTTOM" tickUnit="0.1" upperBound="3.1" />
             </xAxis>
             <yAxis>
-                <NumberAxis autoRanging="false" label="u(x)" lowerBound="-2.0" side="LEFT" tickUnit="2.0" upperBound="30.0" />
+                <NumberAxis autoRanging="false" label="Φ(x)" lowerBound="3.9" side="LEFT" tickUnit="0.1" upperBound="5.1" />
             </yAxis>
         </LineChart>
     </center>

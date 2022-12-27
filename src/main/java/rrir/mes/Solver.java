@@ -6,13 +6,15 @@ import org.apache.commons.math3.linear.*;
 import static java.lang.Math.*;
 
 public class Solver {
+    private static final double G = 6.673e-11;
+    //private static final double G = 6.673e-2;
     private final IterativeLegendreGaussIntegrator integrator=new IterativeLegendreGaussIntegrator(2, 1e-5, 1e-5);
 
     public double[] generateAndSolve(int n){
         if (n < 2) {
             throw new IllegalArgumentException("n must be > 2");
         }
-        Double h= Double.valueOf(3 / n);
+        Double h= Double.valueOf(3.0 / n);
         //tworzenie macierzy B(ei,ej)
         Array2DRowRealMatrix matrixB = new Array2DRowRealMatrix(n, n);
         double diagonal_val=this.integrator.integrate(
@@ -40,7 +42,7 @@ public class Solver {
         }
         //tworzenie wektora L(ej)
         ArrayRealVector vectorL= new ArrayRealVector(n);
-        double constant=4*PI*6.673e-11;
+        double constant=4*PI*G;
         for (int i=1;i<n+1;i++){
             double l=0;
             l+=1/3*integrator.integrate(
