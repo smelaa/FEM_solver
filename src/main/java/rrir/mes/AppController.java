@@ -41,11 +41,8 @@ public class AppController{
         for (int i = 0; i < wValues.length-1; i++) {
             double x=h*(i+1);
             double y=5-x/3+wValues[i];
-            System.out.println(x);
-            System.out.println(y);
             series.getData().add(new XYChart.Data<>(x, y));
         }
-        System.out.println(series.getData().size());
         if (this.plot.getData().size() >= 1) {
             this.plot.getData().remove(0);
         }

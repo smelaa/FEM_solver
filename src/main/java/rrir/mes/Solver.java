@@ -40,6 +40,7 @@ public class Solver {
                 matrixB.addToEntry(r-1, c-1, b);
             }
         }
+
         //tworzenie wektora L(ej)
         ArrayRealVector vectorL= new ArrayRealVector(n);
         double constant=4*PI*G;
@@ -53,16 +54,21 @@ public class Solver {
                     Integer.MAX_VALUE,
                     x -> -1/h,
                     h*i, h*(i+1));
+
             int finalI = i;
-            l+=constant*integrator.integrate(
-                    Integer.MAX_VALUE,
-                    x -> x/h- finalI +1,
-                    min(h*(i-1),1), max(h*i,2));
-            l+=constant*integrator.integrate(
-                    Integer.MAX_VALUE,
-                    x -> -x/h+finalI+1,
-                    min(h*i,1), max(h*(i+1),2));
-            vectorL.addToEntry(i-1,l);
+            if(max(h*(i-1),1)< min(h*i,2)) {
+                l += constant * integrator.integrate(
+                        Integer.MAX_VALUE,
+                        x -> x / h - finalI + 1,
+                        max(h * (i - 1), 1), min(h * i, 2));
+            }
+            if(max(h*i,1)< min(h*(i+1),2)) {
+                l += constant * integrator.integrate(
+                        Integer.MAX_VALUE,
+                        x -> -x / h + finalI + 1,
+                        max(h * i, 1), min(h * (i + 1), 2));
+                vectorL.addToEntry(i - 1, l);
+            }
         }
 
         RealVector vectorW = new LUDecomposition(matrixB).getSolver().solve(vectorL);
